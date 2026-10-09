@@ -2104,7 +2104,7 @@ const deleteRecruiterJob = async (jobId) => {
 
     try {
       const response = await axios.get(
-        `${API}/resumes/student/${studentId}`,
+        `${API}/resumes/student/${studentProfile.id}`,
         {
           responseType: "blob",
         }
@@ -4165,7 +4165,7 @@ const applyForJob = async () => {
       const token = localStorage.getItem("token");
 
       const response = await fetch(
-        `${API}/resumes/student/${application.student.id}`,
+       `${API}/resumes/student/${studentProfile.id}`,
         {
           method: "GET",
           headers: {
