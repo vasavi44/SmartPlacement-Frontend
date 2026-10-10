@@ -1894,31 +1894,26 @@ const deleteRecruiterJob = async (jobId) => {
      LOAD READINESS
   ========================================================= */
 
-  const loadReadiness =
-    async () => {
-      const studentId =
-        studentProfile?.id ||
-        localStorage.getItem(
-          "studentId"
-        );
+  const loadReadiness = async () => {
+  const studentId =
+    studentProfile?.id ||
+    localStorage.getItem("studentId");
 
-      if (!studentId) return;
+  if (!studentId) return;
 
-      try {
-        const response =
-          await axios.get(
-            `${API}/placement-readiness/student/${studentId}`
-          );
+  try {
+    const response = await axios.post(
+      `${API}/placement-readiness/student/${studentId}/calculate`
+    );
 
-        setReadiness(
-          response.data
-        );
-      } catch {
-        console.log(
-          "Readiness not available yet."
-        );
-      }
-    };
+    setReadiness(response.data);
+  } catch (err) {
+    console.error(
+      "Placement readiness calculation failed:",
+      err.response?.data || err.message
+    );
+  }
+};
 
   useEffect(() => {
     if (
