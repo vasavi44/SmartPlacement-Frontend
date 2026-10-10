@@ -4510,6 +4510,22 @@ const applyForJob = async () => {
                       />
 
                     </div>
+                    <div className="form-group">
+  <label>Company Name</label>
+
+  <input
+    type="text"
+    value={companyForm.companyName || ""}
+    readOnly
+    placeholder="Complete your company profile first"
+  />
+
+  {!companyProfile?.companyName && (
+    <small>
+      Please complete your Company Profile before posting a job.
+    </small>
+  )}
+</div>
 
                     <div className="form-group">
 
